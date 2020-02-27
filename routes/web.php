@@ -15,6 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('test',function(){
-    echo "this is a homestead project!";
-});
+Route::post('/books',"BookController@store");
+
+Route::patch('/books/{book}','BookController@update');
