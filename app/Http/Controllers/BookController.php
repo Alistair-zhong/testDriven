@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 class BookController extends Controller
 {
     //
+    public function index(){
+        $books = Book::get();
+        return view('backend.post.index',compact('books'));
+    }
 
     public function store(Request $request){
 
@@ -27,7 +31,7 @@ class BookController extends Controller
     public function validateRequest(Request $request){
         return $request->validate([
             'title'     => 'required',
-            'author'    => 'required'
+            'author_id'    => 'required'
         ]);
     }
 

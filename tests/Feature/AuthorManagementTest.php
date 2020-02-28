@@ -32,4 +32,5 @@ class AuthorManagementTest extends TestCase
         $response->assertOk();
         $this->assertEquals('1997/12/04',$authors->first()->birth->format('Y/m/d'));
     }
+
 }
