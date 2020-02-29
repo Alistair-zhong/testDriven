@@ -41,14 +41,35 @@ class BookReservationTest extends TestCase
 
         $book->checkin($author);
 
-        $this->assertCount(1,Reservation::get());
-        $this->assertEquals($author->id,Reservation::first()->author_id);
-        $this->assertEquals($book->id,Reservation::first()->book_id);
-        $this->assertNotNull(Reservation::first()->checked_in_at);
-        $this->assertEquals(now(),Reservation::first()->checked_in_at); 
+        $book->checkout($author);
+
+        $this->assertCount(2,Reservation::get());
+        $this->assertEquals($author->id,Reservation::find(1)->author_id);
+        $this->assertEquals($book->id,Reservation::find(1)->book_id);
+        $this->assertNotNull(Reservation::find(1)->checked_in_at);
+        $this->assertEquals(now(),Reservation::find(1)->checked_in_at); 
+
+        $book->checkin($author);
+        $this->assertCount(2,Reservation::get());
+        $this->assertEquals($author->id,Reservation::find(2)->author_id);
+        $this->assertEquals($book->id,Reservation::find(2)->book_id);
+        $this->assertNotNull(Reservation::find(2)->checked_in_at);
+        $this->assertEquals(now(),Reservation::find(2)->checked_in_at); 
+
 
     }
 
-
+    /**
+    *@test
+    */
+    public function if_not_checked_out_exception_is_thrown(){
+        
+        $book = factory(Book::class)->create();
+        $author = factory(Author::class)->create();
+        
+        
+        $this->expectException(\Exception::class);
+        $book->checkin($author);
+    }
 
 }
