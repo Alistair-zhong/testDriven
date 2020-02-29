@@ -9,6 +9,7 @@ class BookController extends Controller
 {
     //
     public function index(){
+
         $books = Book::get();
         return view('backend.post.index',compact('books'));
     }
