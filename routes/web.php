@@ -28,3 +28,11 @@ Route::post('/authors','AuthorController@add');
 Route::get('info',function(){
     phpinfo();
 });
+
+Route::post('/books/checkedout/{book}','CheckOutController@store');
+
+Route::post('/books/checkedin/{book}','CheckInBookController@store');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

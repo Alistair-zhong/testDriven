@@ -4,8 +4,9 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Contracts\Auth\Authenticatable;
 
-class Author extends Model
+class Author extends Model 
 {
     //
     protected $guarded = [];

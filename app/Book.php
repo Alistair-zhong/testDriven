@@ -25,7 +25,7 @@ class Book extends Model
     }
 
 
-    public function checkout(Author $author){
+    public function checkout($author){
         // 在Reservation 表中增加一条记录  包含当前book和author的id
         $this->reservations()->create([
             'author_id'     => $author->id,
@@ -34,7 +34,7 @@ class Book extends Model
         ]);
     }
 
-    public function checkin(Author $author){
+    public function checkin($author){
         $reservation = $this->reservations()
                             ->where('author_id',$author->id)
                             ->whereNotNull('checked_out_at')
