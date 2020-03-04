@@ -36,3 +36,6 @@ Route::post('/books/checkedin/{book}','CheckInBookController@store');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+
